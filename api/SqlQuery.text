@@ -1,0 +1,24 @@
+-- Create Contacts table
+CREATE TABLE Contacts (
+  ContactID INT PRIMARY KEY AUTO_INCREMENT,
+  FirstName VARCHAR(50) NOT NULL,
+  LastName VARCHAR(50) NOT NULL,
+  Email VARCHAR(100),
+  ImageURL VARCHAR(255)
+);
+
+-- Create PhoneNumbers table
+CREATE TABLE PhoneNumbers (
+  PhoneNumberID INT PRIMARY KEY AUTO_INCREMENT,
+  ContactID INT,
+  PhoneNumber VARCHAR(20) NOT NULL,
+  FOREIGN KEY (ContactID) REFERENCES Contacts(ContactID) ON DELETE CASCADE
+);
+
+-- Create CSVExport table
+CREATE TABLE CSVExport (
+  ExportID INT PRIMARY KEY AUTO_INCREMENT,
+  ContactID INT,
+  ExportTimestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (ContactID) REFERENCES Contacts(ContactID) ON DELETE CASCADE
+);
